@@ -1,10 +1,9 @@
-import fastify, { FastifyInstance, FastifyReply, FastifyRequest } from 'fastify';
+import fastify, { FastifyInstance } from 'fastify';
+import charactersRoutes from './routes/characters.routes';
 
 const server:FastifyInstance = fastify();
 
-server.get('/', async (request:FastifyRequest, reply:FastifyReply) => {
-    reply.status(200).send({ hello: 'world' });
-});
+server.register(charactersRoutes, {prefix: '/api/v1/characters'});
 
 
 const startServer = async (port:number) => {
